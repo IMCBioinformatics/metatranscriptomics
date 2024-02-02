@@ -38,10 +38,10 @@ rule mergeprofiles:
          metaphlan_SGB_profile_dir=config["output_dir"] + "/metaphlan",
          metaphlan_GTDB_profile_dir=config["output_dir"] + "/metaphlan/GTDB",
          output_dir=config["output_dir"]
-    output: o1=config["output_dir"] + "/metaphlan/results/merged_abundance_table.txt",
-            o2=config["output_dir"] + "/metaphlan/results/merged_abundance_table_species.txt",
+    output: o1=config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB.txt",
+            o2=config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB_species.txt",
             o3=config["output_dir"] + "/metaphlan/results/merged_abundance_table_GTDB.txt",
-            o4=config["output_dir"] + "/metaphlan/results/merged_abundance_table_species_GTDB.txt"
+            o4=config["output_dir"] + "/metaphlan/results/merged_abundance_table_GTDB_species.txt"
     conda: "metaphlan4.0.6"
     shell: """
            python utils/scripts/merge_metaphlan_profiles_to_tables.py --metaphlan_SGB_profile_dir {params.metaphlan_SGB_profile_dir} --metaphlan_GTDB_profile_dir {params.metaphlan_GTDB_profile_dir} --output_dir {params.output_dir} 
