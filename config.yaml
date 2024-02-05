@@ -6,7 +6,7 @@
 list_files: "list_files.txt"
 
 # Input directory Path to raw sequences
-input_dir: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/data"
+input_dir: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/metatranscriptomics/data"
 
 # Output directory path for output files.
 output_dir: "output"
@@ -74,12 +74,12 @@ threads: 8
 #DBs
 ##sortmerna
 
-ref1: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-arc-16s-id95.fasta"
-ref2: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-arc-23s-id98.fasta"
-ref3: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-bac-16s-id90.fasta"
-ref4: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-bac-23s-id98.fasta"
-ref5: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-euk-18s-id95.fasta"
-ref6: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatranscriptomics/utils/databases/sortmerna/silva-euk-28s-id98.fasta"
+ref1: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-arc-16s-id95.fasta"
+ref2: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-arc-23s-id98.fasta"
+ref3: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-bac-16s-id90.fasta"
+ref4: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-bac-23s-id98.fasta"
+ref5: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-euk-18s-id95.fasta"
+ref6: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-euk-28s-id98.fasta"
 
 
 #***************
@@ -87,8 +87,8 @@ ref6: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/github/metatrans
 #****************
 
 ## Metaphlan bowtie2 database.
-metaphlan_database: "utils/databases/metaphlan/"
-sgb_to_gtdb_tsv_file: "utils/databases/metaphlan/mpa_vJan21_CHOCOPhlAnSGB_202103_SGB2GTDB.tsv"
+metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan"
+sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/mpa_vJan21_CHOCOPhlAnSGB_202103_SGB2GTDB.tsv"
 
 
 
@@ -97,17 +97,17 @@ sgb_to_gtdb_tsv_file: "utils/databases/metaphlan/mpa_vJan21_CHOCOPhlAnSGB_202103
 #*****************
 
 # Location of nucleotide database
-nuc_db: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/chocophlan"
+nuc_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/chocophlan"
 
 # Location os protein database
-prot_db: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/uniref"
+prot_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/uniref"
 
 # Location of maping files
 
-uniref90_name: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_uniref90_name.txt.bz2"
-eggnog_uniref90: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_eggnog_uniref90.txt.gz"
-ko_uniref90: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_ko_uniref90.txt.gz"        
-eggnog_name: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_eggnog_name.txt.gz"      
-ko_name: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_ko_name.txt.gz"
-uniref_name: "/work/IMC_binf/sbagheri/IMC_projects/metatranscriptomics/metannotate/dbs/dbs/utility_mapping/map_uniref90_name.txt.bz2"
+uniref90_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_uniref90_name.txt.bz2"
+eggnog_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_eggnog_uniref90.txt.gz"
+ko_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_ko_uniref90.txt.gz"        
+eggnog_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_eggnog_name.txt.gz"      
+ko_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_ko_name.txt.gz"
+uniref_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_uniref90_name.txt.bz2"
 
