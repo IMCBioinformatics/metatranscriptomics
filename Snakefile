@@ -24,10 +24,12 @@ reverse_read_num = config["reverse_read_suffix"].split(".",1)[0]
 
 rule all:
     input:
+
         os.path.join(config["output_dir"],"metqc/multiqc","multiqc_report_raw.html"),
+        os.path.join(config["output_dir"],"metqc/multiqc","multiqc_report_prinseq_filtered.html"),
+        os.path.join(config["output_dir"],"metqc/multiqc","multiqc_report_bmtagger_filtered.html"),
 	## comment out the line below if host_contamination rule fails.
         os.path.join(config["output_dir"],"metqc/seqkit","qc_seqkit.csv"),
-        os.path.join(config["output_dir"],"metqc/multiqc","multiqc_report_bmtagger_filtered.html"),
         expand(os.path.join(config["output_dir"], "sortmerna/merged_data", "{sample}.fastq"),sample=SAMPLES),
         expand(os.path.join(config["output_dir"], "sortmerna", "output", "{sample}.fq"), sample=SAMPLES),
 	expand(config["output_dir"] + "/metaphlan/{sample}_bowtie2.bz2",sample=SAMPLES),
