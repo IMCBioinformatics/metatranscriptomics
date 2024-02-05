@@ -91,7 +91,7 @@ rule multiqc_prinseq_filt:
         fastqc_dir = os.path.join(config["output_dir"],"metqc/prinseq","fastqc/"),
         multiqc_dir = os.path.join(config["output_dir"],"metqc/multiqc/")
     conda: "QC"
-    shell: "multiqc -c utils/multiqc_config.yaml -f {params.fastqc_dir} -o {params.multiqc_dir} -n multiqc_report_prinseq_filtered.html"
+    shell: "multiqc -c utils/envs/multiqc_config.yaml -f {params.fastqc_dir} -o {params.multiqc_dir} -n multiqc_report_prinseq_filtered.html"
 
 
 
