@@ -2,8 +2,8 @@ rule metaphlan:
     input:
         reads = config["output_dir"] + "/sortmerna/output/{sample}.fq"
     output:
-        bt = config["output_dir"] + "/metaphlan/{sample}_bowtie2.bz2",
-        pr = config["output_dir"] + "/metaphlan/{sample}_profile.txt"
+        bt = config["output_dir"] + "/metaphlan/SGB/{sample}_bowtie2.bz2",
+        pr = config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt"
     params: 
         metaphlan_database = config["metaphlan_database"],
 	threads = config["threads"]
@@ -17,7 +17,7 @@ rule metaphlan:
 #giving resuls in count
 rule sgb_to_GTDB:
     input:
-         sg=config["output_dir"] + "/metaphlan/{sample}_profile.txt",
+         sg=config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt",
     params:
          sgb_to_gtdb_tsv_file=config["sgb_to_gtdb_tsv_file"],
          gtdb_output_dir=config["output_dir"] + "/metaphlan/GTDB"
