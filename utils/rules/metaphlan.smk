@@ -32,7 +32,7 @@ rule sgb_to_GTDB:
 
 
 rule mergeprofiles:
-    input: expand(config["output_dir"] + "/metaphlan/{sample}_profile.txt", sample=SAMPLES),
+    input: expand(config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt", sample=SAMPLES),
            expand(config["output_dir"] + "/metaphlan/GTDB/{sample}_profile.txt", sample=SAMPLES)
     params:
          metaphlan_SGB_profile_dir=config["output_dir"] + "/metaphlan",
