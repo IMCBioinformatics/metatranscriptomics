@@ -268,7 +268,7 @@ merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abun
 merge_metaphlan_tables(metaphlan_GTDB_profile_dir, "metaphlan/results/merged_abundance_table_GTDB.txt")
 
 # Merge the metaphlan SGB taxonomy profiles into a large relative abundance table with all samples.
-merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table_relab.txt")
+#merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table_relab.txt")
 
 # Merge the metaphlan GTDB taxonomy profiles into a large relative abundance table with all samples.
 #merge_metaphlan_tables(metaphlan_GTDB_profile_dir, "metaphlan/results/merged_abundance_table_GTDB_relab.txt")
