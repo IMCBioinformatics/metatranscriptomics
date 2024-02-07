@@ -35,7 +35,7 @@ rule mergeprofiles:
     input: expand(config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt", sample=SAMPLES),
            expand(config["output_dir"] + "/metaphlan/GTDB/{sample}_profile.txt", sample=SAMPLES)
     params:
-         metaphlan_SGB_profile_dir=config["output_dir"] + "/metaphlan",
+         metaphlan_SGB_profile_dir=config["output_dir"] + "/metaphlan/SGB",
          metaphlan_GTDB_profile_dir=config["output_dir"] + "/metaphlan/GTDB",
          output_dir=config["output_dir"]
     output: o1=config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB.txt",
