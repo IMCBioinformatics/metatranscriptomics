@@ -9,7 +9,7 @@ rule humann3:
     params:
         db1 = "--bowtie2db output/metannotate/raw/{sample}_database",
         db2 = config["output_dir"] + "/metannotate/databases/{sample}_database",
-        metaphlan= config["path"] + "/output/metaphlan/{sample}_profile.txt",
+        metaphlan= config["path"] + "/output/metaphlan/GTDB/{sample}_profile.txt",
         s = "{sample}",
         output=config["output_dir"] + "/metannotate/raw"
 
