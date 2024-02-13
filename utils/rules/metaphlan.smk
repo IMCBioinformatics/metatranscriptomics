@@ -1,6 +1,6 @@
 rule metaphlan:
     input:
-        reads = config["output_dir"] + "/sortmerna/output/{sample}.fq"
+        reads = config["output_dir"] + "/sortmerna/output/{sample}.fq" if config.get("Sortmerna_run", True) else rules.merge_reads.output
     output:
         bt = config["output_dir"] + "/metaphlan/SGB/{sample}_bowtie2.bz2",
         pr = config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt"
