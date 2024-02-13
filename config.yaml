@@ -68,7 +68,7 @@ run_bmtagger: TRUE
 bmfilter_ref: "/bulk/IMCshared_bulk/shared/dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens_rna/hg19_rRNA_mito_Hsapiens_rna_reference.bitmask"
 
 # Index for srprism (part of bmtagger)
-srprism_ref: "/bulk/IMCshared_bulk/shared//dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens_rna/hg19_rRNA_mito_Hsapiens_rna_reference.srprism"
+srprism_ref: "/bulk/IMCshared_bulk/shared/dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens_rna/hg19_rRNA_mito_Hsapiens_rna_reference.srprism"
 
 
 #***************
