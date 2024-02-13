@@ -29,9 +29,7 @@ rule all:
         os.path.join(config["output_dir"],"metqc/multiqc","multiqc_report_bmtagger_filtered.html"),
 	## comment out the line below if host_contamination rule fails.
         os.path.join(config["output_dir"],"metqc/seqkit","qc_seqkit.csv"),
-        expand(os.path.join(config["output_dir"], "sortmerna/merged_data", "{sample}.fastq"),sample=SAMPLES),
-        expand(os.path.join(config["output_dir"], "sortmerna", "output", "{sample}.fq"), sample=SAMPLES),
-	expand(config["output_dir"] + "/metaphlan/SGB/{sample}_bowtie2.bz2",sample=SAMPLES),
+        expand(config["output_dir"] + "/metaphlan/SGB/{sample}_bowtie2.bz2",sample=SAMPLES),
         expand(config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt",sample=SAMPLES),
         expand(config["output_dir"] + "/metaphlan/GTDB/{sample}_profile.txt",sample=SAMPLES),
         config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB.txt",
