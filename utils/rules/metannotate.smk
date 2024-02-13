@@ -13,7 +13,7 @@ rule humann3:
         s = "{sample}",
         output=config["output_dir"] + "/metannotate/raw"
 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
             """
             humann3 --input {input[0]} --threads 2 --output {params.output} --output-basename {params.s} --nucleotide-database {config[nuc_db]} --protein-database {config[prot_db]} --taxonomic-profile {params.metaphlan}
@@ -29,7 +29,7 @@ rule regroup:
             genefam_rxn=config["output_dir"] + "/metannotate/regrouped/{sample}_genefamilies_rxn.tsv"
      params: eggnog=config["eggnog_uniref90"],
              ko=config["ko_uniref90"]
-     conda: "humann3.6"
+     conda: "humann3.6.1"
      shell:
        """ humann_regroup_table --input {input.genefam}     --output {output.genefam_ko}  -c {params.ko} ; 
            humann_regroup_table --input {input.genefam}     --output {output.genefam_eggnog}  -c {params.eggnog};
@@ -47,7 +47,7 @@ rule rename:
             genefam_ko_name=config["output_dir"] + "/metannotate/renamed/ko/{sample}_genefamilies_ko_renamed.tsv",
             genefam_rxn_name=config["output_dir"] + "/metannotate/renamed/rxn/{sample}_genefamilies_rxn_renamed.tsv",
             genefam_eggnog_name=config["output_dir"] + "/metannotate/renamed/eggnog/{sample}_genefamilies_eggnog_renamed.tsv"
-      conda: "humann3.6"
+      conda: "humann3.6.1"
       params: uniref=config["uniref90_name"], 
               eggnog=config["eggnog_name"],
               ko=config["ko_name"]
@@ -76,7 +76,7 @@ rule merge_output:
         genefam_rxn = config["output_dir"] + "/metannotate/merged/merged_genefamilies_rxn_renamed.tsv",       
         pathabun = config["output_dir"] + "/metannotate/merged/merged_pathabundance.tsv",
         pathcov = config["output_dir"] + "/metannotate/merged/merged_pathcoverage.tsv"
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
          """
             humann_join_tables --input output/metannotate/renamed/uniref/ --output {output.genefam_uniref} --file_name genefamilies; 
@@ -100,7 +100,7 @@ rule relab:
         genefam_rxn_relab = config["output_dir"] + "/metannotate/merged/merged_genefamilies_rxn_renamed_relab.tsv",
         genefam_eggnog_relab = config["output_dir"] + "/metannotate/merged/merged_genefamilies_eggnog_renamed_relab.tsv",
         pathabun_relab = config["output_dir"] + "/metannotate/merged/merged_pathabundance_relab.tsv" 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
          """
          humann_renorm_table --input {input.genefam_uniref} --output {output.genefam_uniref_relab} -s n --units relab;
@@ -123,7 +123,7 @@ rule cpm:
         genefam_rxn_cpm = config["output_dir"] + "/metannotate/merged/merged_genefamilies_rxn_renamed_cpm.tsv",
         genefam_eggnog_cpm = config["output_dir"] + "/metannotate/merged/merged_genefamilies_eggnog_renamed_cpm.tsv",
         pathabun_cpm = config["output_dir"] + "/metannotate/merged/merged_pathabundance_cpm.tsv" 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
          """
          humann_renorm_table --input {input.genefam_uniref} --output {output.genefam_uniref_cpm} -s n --units cpm;
@@ -154,7 +154,7 @@ rule final_results_raw:
         genefam_eggnog_raw_us = config["output_dir"] + "/metannotate/final_results_raw/merged_genefamilies_eggnog_renamed_unstratified.tsv",
         pathabun_raw_us = config["output_dir"] + "/metannotate/final_results_raw/merged_pathabundance_unstratified.tsv" 
 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
         """ 
             humann_split_stratified_table --input {input.genefam_uniref_raw} --output {params.output_dir};
@@ -188,7 +188,7 @@ rule final_results_relab:
     params: 
         output_dir=config["output_dir"] + "/metannotate/final_results_relab"
 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
         """ 
             humann_split_stratified_table --input {input.genefam_uniref_relab} --output {params.output_dir};
@@ -222,7 +222,7 @@ rule final_results_cpm:
     params: 
         output_dir=config["output_dir"] + "/metannotate/final_results_cpm"
 
-    conda: "humann3.6"
+    conda: "humann3.6.1"
     shell:
         """ 
             humann_split_stratified_table --input {input.genefam_uniref_cpm} --output {params.output_dir};
