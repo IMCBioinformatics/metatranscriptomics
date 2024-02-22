@@ -224,13 +224,13 @@ def merge_metaphlan_tables(metaphlan_profile_dir, merged_metaphlan_table_file):
                     # 'clade_name', 'clade_taxid', 'relative_abundance', 'coverage', 'estimated_number_of_reads_from_the_clade'
 
                     # Construct the metaphlan abundance tables. If "estimated_number_of_reads_from_the_clade" in metaphlan_profile_entry use abundance_count.
-                    if(("estimated_number_of_reads_from_the_clade" in metaphlan_profile_entry) and ((merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table.txt") or (merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_GTDB.txt"))):
-#                    if(("estimated_number_of_reads_from_the_clade" in metaphlan_profile_entry) and ((merged_metaphlan_table_file == "merged_abundance_table.txt"))):
+                    if(("estimated_number_of_reads_from_the_clade" in metaphlan_profile_entry) and ((merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_SGB.txt") or (merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_GTDB.txt"))):
+#                    if(("estimated_number_of_reads_from_the_clade" in metaphlan_profile_entry) and ((merged_metaphlan_table_file == "merged_abundance_table_SGB.txt"))):
                         abundance_count = metaphlan_profile_entry["estimated_number_of_reads_from_the_clade"]
 #                        print(abundance_count)
                         metaphlan_table_row.append(abundance_count)
                     # Construct the metaphlan relative abundance tables.
-                    elif((merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_relab.txt") or (merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_GTDB_relab.txt")): # Otherwise "estimated_number_of_reads_from_the_clade" not in metaphlan_profile_entry use "relative_abundance" instead.
+                    elif((merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_SGB_relab.txt") or (merged_metaphlan_table_file == "metaphlan/results/merged_abundance_table_GTDB_relab.txt")): # Otherwise "estimated_number_of_reads_from_the_clade" not in metaphlan_profile_entry use "relative_abundance" instead.
                         relative_abundance = metaphlan_profile_entry["relative_abundance"]
 #                        print(relative_abundance)
                         metaphlan_table_row.append(relative_abundance)
@@ -262,13 +262,13 @@ def merge_metaphlan_tables(metaphlan_profile_dir, merged_metaphlan_table_file):
 ## Merge the metaphlan profile tables.
 
 # Merge the metaphlan SGB taxonomy profiles into a large abundance table with all samples.
-merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table.txt")
+merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table_SGB.txt")
 
 # Merge the metaphlan GTDB taxonomy profiles into a large abundance table with all samples.
 merge_metaphlan_tables(metaphlan_GTDB_profile_dir, "metaphlan/results/merged_abundance_table_GTDB.txt")
 
 # Merge the metaphlan SGB taxonomy profiles into a large relative abundance table with all samples.
-#merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table_relab.txt")
+#merge_metaphlan_tables(metaphlan_SGB_profile_dir, "metaphlan/results/merged_abundance_table_SGB_relab.txt")
 
 # Merge the metaphlan GTDB taxonomy profiles into a large relative abundance table with all samples.
 #merge_metaphlan_tables(metaphlan_GTDB_profile_dir, "metaphlan/results/merged_abundance_table_GTDB_relab.txt")
