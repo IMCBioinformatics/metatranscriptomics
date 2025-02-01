@@ -35,6 +35,15 @@
   },
   "humann3" :
   {
-    "mem" : "40G",
+    "mem" : "100G",
+    "partition": "synergy,cpu2019,cpu2021,cpu2022,cpu2023",
+  },
+  "cpm" :
+  {
+    "mem" : "50G",
+  },
+  "relab" :
+  {
+    "mem" : "50G",
   }
 }
