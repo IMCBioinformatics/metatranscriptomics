@@ -14,7 +14,7 @@
 time_in_seconds=$(date +%s)
 
 log_dir="$(pwd)"
-log_file="logs/pipeline-analysis.log.txt_${time_in_seconds}.log.txt"
+log_file="logs/pipeline-analysis_${time_in_seconds}.log.txt"
 
 num_jobs=60
 
