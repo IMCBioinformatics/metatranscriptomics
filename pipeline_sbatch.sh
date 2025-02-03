@@ -6,11 +6,16 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --time=7-00:00:00
 #SBATCH --mem=10G
-#SBATCH --error=record_sbatch_run.%J.err
-#SBATCH --output=record_sbatch_run.%J.out
+#SBATCH --error=record_sbatch_run.%J_$(date +\%Y\%m\%d\%H\%M\%S).err
+#SBATCH --output=record_sbatch_run.%J_$(date +\%Y\%m\%d\%H\%M\%S).out
+
+
+
+time_in_seconds=$(date +%s)
 
 log_dir="$(pwd)"
-log_file="logs/pipeline-analysis.log.txt"
+log_file="logs/pipeline-analysis.log.txt_${time_in_seconds}.log.txt"
+
 num_jobs=60
 
 snakemake --unlock
