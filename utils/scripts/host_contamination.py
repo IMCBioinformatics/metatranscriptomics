@@ -63,13 +63,12 @@ merged=bmtagger.join(prinseq,lsuffix="_bmtagged", rsuffix="_prinseq").join(raw)
 merged=merged.reset_index()
 
 ### Restructuring the merged table and calculation of host contamination, clean reads, and low quality reads
-merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')] = 
-merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')].applymap(lambda x: str(x).replace(',', '')).astype(float)
-        
+merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')] = merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')].applymap(lambda x: str(x).replace(',', '')).astype(float)
+
 merged.loc[:,'Host_contamination']=(merged.loc[:,'num_seqs_prinseq']-merged.loc[:,'num_seqs_bmtagged'])
-        
+
 merged.loc[:,'Clean_reads']=merged.loc[:,'num_seqs_bmtagged']
-        
+
 merged.loc[:,'Low_quality_reads']=merged.loc[:,'num_seqs']-merged.loc[:,'num_seqs_prinseq']
 
 ### Saving the final table in csv format        
