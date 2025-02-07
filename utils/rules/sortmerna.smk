@@ -1,13 +1,3 @@
-rule merge_reads:
-    input:
-        r1 = os.path.join(config["output_dir"],"metqc/bmtagger","{sample}_bmtagged_1.fastq"),
-        r2 = os.path.join(config["output_dir"],"metqc/bmtagger","{sample}_bmtagged_2.fastq")
-    output:
-        config["output_dir"] + "/sortmerna/merged_data/{sample}.fastq"
-    shell:
-        "cat {input.r1} {input.r2} > {output}"
-
-
 rule sortmerna:
     input:
         reads = config["output_dir"] + "/sortmerna/merged_data/{sample}.fastq"
