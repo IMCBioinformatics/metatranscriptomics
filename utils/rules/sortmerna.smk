@@ -1,6 +1,6 @@
 rule sortmerna:
     input:
-        reads = config["output_dir"] + "/sortmerna/merged_data/{sample}.fastq"
+        reads = config["output_dir"] + "/metqc/merged_data/{sample}.fastq"
     output:
         bt = config["output_dir"] + "/sortmerna/output/{sample}.fq",
     params: 
