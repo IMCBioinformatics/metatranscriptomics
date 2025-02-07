@@ -3,5 +3,5 @@ channels:
   - bioconda/label/cf201901
   - defaults
 dependencies:
-  - seqkit=0.10.0=1
+  - seqkit=2.9.0
 prefix: /home/hena.ramay/miniconda3/envs/seqkit
