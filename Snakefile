@@ -19,6 +19,12 @@ forward_read_num = config["forward_read_suffix"].split(".",1)[0]
 reverse_read_num = config["reverse_read_suffix"].split(".",1)[0]
 
 
+myoutput = list()
+
+if config['Sortmerna_run'] == True:
+    myoutput.append(expand(os.path.join(config["output_dir"], "sortmerna/merged_data", "{sample}.fastq"),sample=SAMPLES))
+    myoutput.append(expand(os.path.join(config["output_dir"], "sortmerna", "output", "{sample}.fq"), sample=SAMPLES))
+
 
 # **** Rules ****
 
