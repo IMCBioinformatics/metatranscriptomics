@@ -135,9 +135,9 @@ rule seqkit:
         bmtagger=directory(os.path.join(config["output_dir"],"metqc/bmtagger"))
      conda: "../envs/seqkit.yaml"
      shell:
-         "seqkit stats -j {config[num_cpus]} {params.prinseq}/*_[0-9].fastq -o {output.prinseq};"
-         "seqkit stats -j {config[num_cpus]} {params.bmtagger}/*.fastq -o {output.bmtagger};"
-         "seqkit stats -j {config[num_cpus]} {params.raw}/*.fastq.gz -o {output.raw};"
+         "seqkit stats -b -j {config[num_cpus]} {params.prinseq}/*_[0-9].fastq -o {output.prinseq};"
+         "seqkit stats -b -j {config[num_cpus]} {params.bmtagger}/*.fastq -o {output.bmtagger};"
+         "seqkit stats -b -j {config[num_cpus]} {params.raw}/*.fastq.gz -o {output.raw};"
          "touch {output.complete};"
 
 
