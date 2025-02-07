@@ -7,6 +7,7 @@ rule humann3:
         pathcov = config["output_dir"] + "/metannotate/raw/{sample}_pathcoverage.tsv",
         pathabun = config["output_dir"] + "/metannotate/raw/{sample}_pathabundance.tsv"
     params:
+        num_threads = config["num_threads"],
         db2 = config["output_dir"] + "/metannotate/databases/{sample}_database",
         metaphlan= config["path"] + "/output/metaphlan/SGB/{sample}_profile.txt",
         s = "{sample}",
@@ -14,7 +15,7 @@ rule humann3:
     conda: config["humann_version"]
     shell:
             """
-            humann3 --input {input[0]} --threads 2 --output {params.output} --output-basename {params.s} --nucleotide-database {config[nuc_db]} --protein-database {config[prot_db]} --taxonomic-profile {params.metaphlan}
+            humann3 --input {input[0]} --threads {params.num_threads} --output {params.output} --output-basename {params.s} --nucleotide-database {config[nuc_db]} --protein-database {config[prot_db]} --taxonomic-profile {params.metaphlan}
 # This has been taken out becaue we can use the metaphlan outputs from the metaphlan run and don't need to re-do them.
 #--metaphlan-options="{params.db1}"
             rm -rf {params.db2}
