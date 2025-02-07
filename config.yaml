@@ -5,6 +5,26 @@
 Sortmerna_run: FALSE
 
 
+# ***********
+# **Threads**
+# ***********
+
+###### change the cpu-per-task parameter in  the cluster.json file accordingly #####
+
+#metqc: cpus for cutadapt and seqkit
+metqc_cpus: 8
+
+#sortmerna: cpus for sortmerna
+sortmerna_cpus: 8
+
+#metaphlan: cpus for metaphlan
+metaphlan_cpus: 8
+
+#metannotate: threads for humann3
+metannotate_cpus: 8
+
+
+
 # *********
 # * metqc *
 # *********
@@ -75,9 +95,6 @@ srprism_ref: "/bulk/IMCshared_bulk/shared/dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens
 #** sortmerna **
 #***************
 
-threads: 8
-
-
 #DBs
 ##sortmerna
 
@@ -93,9 +110,15 @@ ref6: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-euk-28
 #** metaphlan **
 #****************
 
+metaphlan_version: "metaphlan4.1"
+
 ## Metaphlan bowtie2 database.
-metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan"
-sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/mpa_vJan21_CHOCOPhlAnSGB_202103_SGB2GTDB.tsv"
+
+metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJun23_version"
+
+index: "mpa_vJun23_CHOCOPhlAnSGB_202307"
+
+sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJun23_version/mpa_vJun23_CHOCOPhlAnSGB_202307_SGB2GTDB.tsv"
 
 
 
@@ -103,18 +126,18 @@ sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaph
 #** metannotate **
 #*****************
 
+humann_version: "humann3.9"
 # Location of nucleotide database
-nuc_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/chocophlan"
+nuc_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/chocophlan"
 
 # Location os protein database
-prot_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/uniref"
+prot_db: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/uniref"
 
 # Location of maping files
 
-uniref90_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_uniref90_name.txt.bz2"
-eggnog_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_eggnog_uniref90.txt.gz"
-ko_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_ko_uniref90.txt.gz"        
-eggnog_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_eggnog_name.txt.gz"      
-ko_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_ko_name.txt.gz"
-uniref_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/utility_mapping/map_uniref90_name.txt.bz2"
-
+uniref90_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_uniref90_name.txt.bz2"
+eggnog_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_eggnog_uniref90.txt.gz"
+ko_uniref90: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_ko_uniref90.txt.gz"        
+eggnog_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_eggnog_name.txt.gz"      
+ko_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_ko_name.txt.gz"
+uniref_name: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metannotate/humann3.9/utility_mapping/map_uniref90_name.txt.bz2"
