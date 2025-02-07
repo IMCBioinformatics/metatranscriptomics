@@ -31,7 +31,7 @@ rule cutadapt:
     conda: "QC"
     shell:
             "cutadapt -m {config[minlength]} --max-n {config[maxn]} -a {config[fwd_adapter]} -A {config[rev_adapter]} "
-            "-j {config[num_cpus]} -o {output.r1} -p {output.r2} "
+            "-j {config[metqc_cpus]} -o {output.r1} -p {output.r2} "
             "{input.r1} {input.r2}"
 
 rule prinseq:
@@ -135,9 +135,9 @@ rule seqkit:
         bmtagger=directory(os.path.join(config["output_dir"],"metqc/bmtagger"))
      conda: "../envs/seqkit.yaml"
      shell:
-         "seqkit stats -b -j {config[num_cpus]} {params.prinseq}/*_[0-9].fastq -o {output.prinseq};"
-         "seqkit stats -b -j {config[num_cpus]} {params.bmtagger}/*.fastq -o {output.bmtagger};"
-         "seqkit stats -b -j {config[num_cpus]} {params.raw}/*.fastq.gz -o {output.raw};"
+         "seqkit stats -b -j {config[metqc_cpus]} {params.prinseq}/*_[0-9].fastq -o {output.prinseq};"
+         "seqkit stats -b -j {config[metqc_cpus]} {params.bmtagger}/*.fastq -o {output.bmtagger};"
+         "seqkit stats -b -j {config[metqc_cpus]} {params.raw}/*.fastq.gz -o {output.raw};"
          "touch {output.complete};"
 
 
