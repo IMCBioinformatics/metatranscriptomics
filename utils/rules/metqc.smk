@@ -43,7 +43,7 @@ rule prinseq:
     output:
         r1 = os.path.join(config["output_dir"],"metqc/prinseq","{sample}_filtered_1.fastq"),
         r2 = os.path.join(config["output_dir"],"metqc/prinseq","{sample}_filtered_2.fastq")
-    conda: "../envs/prinseq_env.yaml"
+    conda: "../envs/prinseq_env.yaml" 
     shell:
             "perl utils/scripts/prinseq-lite.pl -fastq {input.r1} -fastq2 {input.r2} "
             "-trim_left {config[trimleft]} -trim_right {config[trimright]} "
@@ -52,7 +52,7 @@ rule prinseq:
             "{config[trim_qual_window]} -trim_qual_step {config[trim_qual_step]} "
             "-trim_qual_rule {config[trim_qual_rule]} -trim_qual_left {config[trim_qual_left]} "
             "-trim_qual_right {config[trim_qual_right]} -min_len {config[minlength]} "
-			"-ns_max_n {config[maxn]}"
+            "-ns_max_n {config[maxn]}"
 
 rule bmtagger:
     input:
