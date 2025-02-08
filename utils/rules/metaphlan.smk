@@ -5,10 +5,10 @@ rule metaphlan:
         bt = config["output_dir"] + "/metaphlan/SGB/{sample}_bowtie2.bz2",
         pr = config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt",
         sam = config["output_dir"] + "/metaphlan/SGB/{sample}_sam.bz2"
-    params: 
+    params:
         metaphlan_database = config["metaphlan_database"],
         index = config["index"],
-	threads = config["metaphlan_cpus"]
+        threads = config["metaphlan_cpus"]
     conda: config["metaphlan_version"]
     shell:
             "metaphlan -t rel_ab_w_read_stats --unclassified_estimation {input.reads} --input_type fastq "
