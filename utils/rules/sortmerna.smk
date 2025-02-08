@@ -10,7 +10,7 @@ rule sortmerna:
         ref4=config["ref4"],
         ref5=config["ref5"],
         ref6=config["ref6"],
-	threads = config["threads"],
+	threads = config["sortmerna_cpus"],
         dir=config["output_dir"] + "/sortmerna/{sample}",
         unaligned=config["output_dir"] + "/sortmerna/output/{sample}",
     conda: "sortmerna"
