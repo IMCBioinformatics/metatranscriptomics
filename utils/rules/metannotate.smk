@@ -15,9 +15,7 @@ rule humann3:
     conda: config["humann_version"]
     shell:
             """
-            humann3 --input {input[0]} --threads {params.threads} --output {params.output} --output-basename {params.s} --nucleotide-database {config[nuc_db]} --protein-database {config[prot_db]} --taxonomic-profile {params.metaphlan}
-# This has been taken out becaue we can use the metaphlan outputs from the metaphlan run and don't need to re-do them.
-#--metaphlan-options="{params.db1}"
+            humann3 --input {input[0]} --threads {params.threads}  --remove-temp-output --output {params.output} --output-basename {params.s} --nucleotide-database {config[nuc_db]} --protein-database {config[prot_db]} --taxonomic-profile {params.metaphlan}
             rm -rf {params.db2}
             """
 
