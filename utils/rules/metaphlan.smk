@@ -11,8 +11,8 @@ rule metaphlan:
         threads = config["metaphlan_cpus"]
     conda: config["metaphlan_version"]
     shell:
-            "metaphlan -t rel_ab_w_read_stats --unclassified_estimation {input.reads} --input_type fastq "
-            "--bowtie2db {params.metaphlan_database} --bowtie2out {output.bt} --nproc {params.threads} -o {output.pr}"
+        "metaphlan -t rel_ab_w_read_stats --unclassified_estimation {input.reads} --input_type fastq -s {output.sam} "
+        "--bowtie2db {params.metaphlan_database} --index {params.index} --bowtie2out {output.bt} --nproc {params.threads} -o {output.pr}"
 
 
 
