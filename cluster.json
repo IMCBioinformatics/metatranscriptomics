@@ -27,7 +27,7 @@
   },
   "prinseq" :
   {
-    "mem" : "50G",
+    "mem" : "80G",
   },
   "metaphlan" :
   {
