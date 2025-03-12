@@ -35,7 +35,8 @@
   },
   "humann3" :
   {
-    "mem" : "100G",
+    "cpus-per-task" : 25,
+    "mem" : "160G",
     "partition": "synergy,cpu2019,cpu2021,cpu2022,cpu2023",
   },
   "cpm" :
