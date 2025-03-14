@@ -57,8 +57,8 @@ num_cpus: 7
 run_cutadapt: TRUE
 
 # Adapters for cutadapt
-fwd_adapter: CTGTCTCTTATACACATCT
-rev_adapter: CTGTCTCTTATACACATCT
+fwd_adapter: 
+rev_adapter: 
 
 
 ### Prinseq parameters
