@@ -59,9 +59,6 @@ bmtagger=bmtagger.set_index(['Sample',"Type"])
 merged=bmtagger.join(prinseq,lsuffix="_bmtagged", rsuffix="_prinseq").join(raw)
 
 
-### Removing row lables        
-merged=merged.reset_index()
-
 ### Restructuring the merged table and calculation of host contamination, clean reads, and low quality reads
 merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')] = merged.loc[:,('num_seqs','num_seqs_bmtagged','num_seqs_prinseq')].applymap(lambda x: str(x).replace(',', '')).astype(float)
 
