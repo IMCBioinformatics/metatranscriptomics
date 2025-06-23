@@ -148,8 +148,8 @@ rule host_contamination:
         bmtagger=config["output_dir"]+"/metqc/seqkit/seq_kit_bmtagger.csv",
         complete=config["output_dir"]+"/metqc/seqkit/seq_kit_complete.csv"
      params:
-        r1=forward_read_num, #config["reverse_read_suffix"],
-        r2=reverse_read_num #config["forward_read_suffix"]
+        r1=config["reverse_read_suffix"],
+        r2=config["forward_read_suffix"]
      conda: "../envs/python3_8.yaml"
      output:
          hc=config["output_dir"]+"/metqc/seqkit/qc_seqkit.csv"
