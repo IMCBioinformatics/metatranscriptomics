@@ -40,7 +40,7 @@ rule sgb_to_GTDB_relab:
         gtdb_output_dir=config["output_dir"] + "/metaphlan/GTDB_relab"
     output:
         gtdb=config["output_dir"] + "/metaphlan/GTDB_relab/{sample}_profile.txt"
-    conda: "utils/envs/metaphlan4.yaml"
+    conda: config["metaphlan_version"]
     shell:
         "sgb_to_gtdb_profile.py  -i {input.sg} -o {output.gtdb}"
 
