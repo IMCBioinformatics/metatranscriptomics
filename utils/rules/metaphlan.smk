@@ -17,7 +17,7 @@ rule metaphlan:
 
 
 #giving resuls in count
-rule sgb_to_GTDB:
+rule sgb_to_GTDB_count:
     input:
          sg=config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt",
     params:
@@ -31,6 +31,18 @@ rule sgb_to_GTDB:
         mkdir -p {params.gtdb_output_dir}
         python utils/scripts/sgb_to_gtdb_profile_abundances.py --metaphlan_SGB_profile_infile {input.sg} --sgb_to_gtdb_tsv_file {params.sgb_to_gtdb_tsv_file} --output_dir {params.gtdb_output_dir}
         """
+
+
+rule sgb_to_GTDB_relab:
+    input:
+        sg=config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt"
+    params:
+        gtdb_output_dir=config["output_dir"] + "/metaphlan/GTDB_relab"
+    output:
+        gtdb=config["output_dir"] + "/metaphlan/GTDB_relab/{sample}_profile.txt"
+    conda: "utils/envs/metaphlan4.yaml"
+    shell:
+        "sgb_to_gtdb_profile.py  -i {input.sg} -o {output.gtdb}"
 
 
 rule mergeprofiles:
@@ -50,3 +62,28 @@ rule mergeprofiles:
            grep -E "(s__)|(^ID)|(clade_name)|(UNKNOWN)|(UNCLASSIFIED)" {output.o1} | grep -v "t__"  > {output.o2}
            grep -E "(s__)|(^ID)|(clade_name)|(UNKNOWN)|(UNCLASSIFIED)" {output.o3} | grep -v "t__"  > {output.o4}
            """
+
+rule mergeprofiles_SGB_relab:
+    input: expand(config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt", sample=SAMPLES)
+    output: o1=config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB_relab.txt",
+            o2=config["output_dir"] + "/metaphlan/results/merged_abundance_table_SGB_species_relab.txt"
+    params: profiles=config["output_dir"]+"/metaphlan/SGB/*_profile.txt"
+    conda: config["metaphlan_version"]
+    shell: """
+           python utils/scripts/merge_metaphlan_tables_relab.py {params.profiles} > {output.o1}
+           grep -E "(s__)|(^ID)|(clade_name)|(UNKNOWN)|(UNCLASSIFIED)" {output.o1} | grep -v "t__"  > {output.o2}
+           """
+
+
+rule mergeprofiles_GTDB_relab:
+    input: expand(config["output_dir"] + "/metaphlan/GTDB_relab/{sample}_profile.txt", sample=SAMPLES)
+    output: o1=config["output_dir"] + "/metaphlan/results/merged_abundance_table_GTDB_relab.txt",
+            o2=config["output_dir"] + "/metaphlan/results/merged_abundance_table_GTDB_species_relab.txt"
+    params: profiles=config["output_dir"]+"/metaphlan/GTDB_relab/*_profile.txt"
+    conda: config["metaphlan_version"]
+    shell: """
+           python utils/scripts/merge_metaphlan_tables_relab.py {params.profiles} > {output.o1}
+           grep -E "(s__)|(^ID)|(clade_name)|(UNKNOWN)|(UNCLASSIFIED)" {output.o1} | grep -v "t__"  > {output.o2}
+           """
+
+
