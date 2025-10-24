@@ -35,17 +35,18 @@ def merge( aaastrIn, ostm ):
         if len(mpaVersion):
             listmpaVersion.add(mpaVersion[0])
 
+
         if len(listmpaVersion) > 1:
             print('merge_metaphlan_tables found tables made with different versions of the MetaPhlAn2 database.\nPlease re-run MetaPhlAn2 with the same database.\n')
             return
 
-         iIn = pd.read_csv(f,
+        iIn = pd.read_csv(f,
                           sep='\t',
                           skiprows=len(headers),
-                          names = names,
+                          names=names,
 #######  Hard coded cols to read so we can extract raw abundances.
                           usecols=[0,1,2],
-                        ).fillna('')
+                         ).fillna('')
         iIn = iIn.set_index(iIn.columns[index_col].to_list())
 #        print(iIn)
         if merged_tables.empty:
