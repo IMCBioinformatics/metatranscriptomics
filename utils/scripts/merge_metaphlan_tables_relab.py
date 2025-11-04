@@ -29,7 +29,7 @@ def merge( aaastrIn, ostm ):
             index_col = 0
         if len(headers) >= 4:
             names = headers[-1].split('#')[1].strip().split('\t')
-            print(names)
+#            print(names)
             index_col = [0,1]
         mpaVersion = list(filter(re.compile('#mpa_v[0-9]{2,}_CHOCOPhlAn_[0-9]{0,}').match, headers))
         if len(mpaVersion):
