@@ -68,5 +68,12 @@ merged.loc[:,'Clean_reads']=merged.loc[:,'num_seqs_bmtagged']
 
 merged.loc[:,'Low_quality_reads']=merged.loc[:,'num_seqs']-merged.loc[:,'num_seqs_prinseq']
 
+# Convert index to columns if Sample and Type are in the index
+if isinstance(merged.index, pd.MultiIndex) and set(['Sample','Type']).issubset(merged.index.names):
+    merged = merged.reset_index()
+elif merged.index.name in ['Sample', 'Type'] or merged.index.names is not None:
+    merged = merged.reset_index()
+    
+
 ### Saving the final table in csv format        
 merged.loc[:,['Sample','Type','Low_quality_reads','Clean_reads','Host_contamination','num_seqs','num_seqs_prinseq','num_seqs_bmtagged']].to_csv(snakemake.output[0],index=False)
