@@ -7,63 +7,73 @@ import re
 import pandas as pd
 from itertools import takewhile
 
-def merge( aaastrIn, ostm ):
-    """
-    Outputs the table join of the given pre-split string collection.
-    :param  aaastrIn:   One or more split lines from which data are read.
-    :type   aaastrIn:   collection of collections of string collections
-    :param  iCol:       Data column in which IDs are matched (zero-indexed).
-    :type   iCol:       int
-    :param  ostm:       Output stream to which matched rows are written.
-    :type   ostm:       output stream
-    """
+def merge(aaastrIn, ostm):
 
-    listmpaVersion = set()
     merged_tables = pd.DataFrame()
 
     for f in aaastrIn:
+
+        # --- Step 1: find the header line starting with #clade_name ---
+        header_line = None
+        mpaVersion = None
         with open(f) as fin:
-            headers = [x.strip() for x in takewhile(lambda x: x.startswith('#'), fin)]
-        if len(headers) == 1:
-            names = ['clade_name', 'estimated_number_of_reads_from_the_clade']
-            index_col = 0
-        if len(headers) >= 4:
-            names = headers[-1].split('#')[1].strip().split('\t')
-#            print(names)
-            index_col = [0,1]
-        mpaVersion = list(filter(re.compile('#mpa_v[0-9]{2,}_CHOCOPhlAn_[0-9]{0,}').match, headers))
-        if len(mpaVersion):
-            listmpaVersion.add(mpaVersion[0])
+            for line in fin:
+                # capture MetaPhlAn DB version if present
+                if line.startswith('#mpa_v'):
+                    mpaVersion = line.strip()
+                if line.startswith("#clade_name"):
+                    header_line = line.strip()
+                    break
 
+        if header_line is None:
+            raise RuntimeError(f"No header starting with #clade_name found in {f}")
 
-        if len(listmpaVersion) > 1:
-            print('merge_metaphlan_tables found tables made with different versions of the MetaPhlAn2 database.\nPlease re-run MetaPhlAn2 with the same database.\n')
-            return
+        # --- Step 2: remove the leading '#' and extract all column names ---
+        names = header_line.lstrip("#").strip().split("\t")
 
-        iIn = pd.read_csv(f,
-                          sep='\t',
-                          skiprows=len(headers),
-                          names=names,
-#######  Hard coded cols to read so we can extract raw abundances.
-                          usecols=[0,1,2],
-                         ).fillna('')
-        iIn = iIn.set_index(iIn.columns[index_col].to_list())
-#        print(iIn)
+        # --- Step 3: read only required two columns ---
+        required_cols = ["clade_name", "relative_abundance"]
+        for col in required_cols:
+            if col not in names:
+                raise RuntimeError(f"Column {col} not found in file {f}")
+
+        idx_clade = names.index("clade_name")
+        idx_relab = names.index("relative_abundance")
+        usecols = [idx_clade, idx_relab]
+
+        # Read data: skip all lines starting with '#', use our column names
+        iIn = pd.read_csv(
+            f,
+            sep="\t",
+            comment="#",      # ignore all header lines
+            header=None,      # no header in data block
+            names=names,      # assign the names we parsed
+            usecols=usecols,  # only clade_name + relative_abundance
+        ).fillna("")
+
+        # Set clade_name as index
+        iIn = iIn.set_index("clade_name")
+
+        # Choose sample name
+        sample_name = os.path.splitext(os.path.basename(f))[0]
+        this_sample = iIn.iloc[:, 0].rename(sample_name).to_frame()
+
+        # Debug line (optional)
+        print(f"Adding sample column {sample_name} from file {f} (shape {this_sample.shape})",
+              file=sys.stderr)
+
         if merged_tables.empty:
-            merged_tables = iIn.iloc[:,0].rename(os.path.splitext(os.path.basename(f))[0]).to_frame()
+            merged_tables = this_sample
         else:
-            merged_tables = pd.merge(iIn.iloc[:,0].rename(os.path.splitext(os.path.basename(f))[0]).to_frame(),
-                                    merged_tables,
-                                    how='outer', 
-                                    left_index=True, 
-                                    right_index=True
-                                    )
-#            print(merged_tables)
-    if listmpaVersion:
-        ostm.write(list(listmpaVersion)[0]+'\n')
-    merged_tables.fillna('0').reset_index().to_csv(ostm, index=False, sep = '\t')
+            merged_tables = merged_tables.join(this_sample, how="outer")
 
-argp = argparse.ArgumentParser( prog = "merge_metaphlan_tables.py",
+    # Write output (no version, unless you decide to aggregate mpaVersion values)
+    merged_tables.fillna("0").reset_index().to_csv(
+        ostm, index=False, sep="\t"
+    )
+
+
+argp = argparse.ArgumentParser( prog = "merge_metaphlan_tables_relab.py",
     description = """Performs a table join on one or more metaphlan output files.""")
 argp.add_argument( "aistms",    metavar = "input.txt", nargs = "+",
     help = "One or more tab-delimited text tables to join" )
@@ -72,7 +82,7 @@ argp.add_argument( '-o',    metavar = "output.txt", nargs = 1,
 
 __doc__ = "::\n\n\t" + argp.format_help( ).replace( "\n", "\n\t" )
 
-argp.usage = argp.format_usage()[7:]+"\n\n\tPlease make sure to supply file paths to the files to combine. If combining 3 files (Table1.txt, Table2.txt, and Table3.txt) the call should be:\n\n\t\tpython merge_metaphlan_tables.py Table1.txt Table2.txt Table3.txt > output.txt\n\n\tA wildcard to indicate all .txt files that start with Table can be used as follows:\n\n\t\tpython merge_metaphlan_tables.py Table*.txt > output.txt"
+argp.usage = argp.format_usage()[7:]+"\n\n\tPlease make sure to supply file paths to the files to combine. If combining 3 files (Table1.txt, Table2.txt, and Table3.txt) the call should be:\n\n\t\tpython merge_metaphlan_tables_relab.py Table1.txt Table2.txt Table3.txt > output.txt\n\n\tA wildcard to indicate all .txt files that start with Table can be used as follows:\n\n\t\tpython merge_metaphlan_tables_relab.py Table*.txt > output.txt"
 
 
 def main( ):
