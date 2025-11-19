@@ -190,7 +190,7 @@ def merge_metaphlan_tables(metaphlan_profile_dir, merged_metaphlan_table_file):
     del sample_names_list
 
     csv_writer_file_handle = open(os.path.join(output_dir, merged_metaphlan_table_file), "w+")
-    csv_writer = csv.writer(csv_writer_file_handle, delimiter='\t', quotechar='', quoting=csv.QUOTE_NONE)
+    csv_writer = csv.writer(csv_writer_file_handle, delimiter='\t', quoting=csv.QUOTE_NONE)
     if(clade_name in clade_taxid_dict):
         csv_writer.writerow(["clade_name", "clade_taxid"] + list(sample_names_set_sorted))
     else:
