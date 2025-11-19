@@ -32,6 +32,7 @@ list_files=$(grep "sampletable" < config.yaml | cut -d ' ' -f2 | sed 's/"//g')
 #Copying all snakemake/log files of the run in the output folder
 snakemake_file_dir="${output_dir}/snakemake_files"
 mkdir -p $snakemake_file_dir
+rm -rf "$snakemake_file_dir"/*
 
 cp $list_files $snakemake_file_dir
 cp Snakefile $snakemake_file_dir
