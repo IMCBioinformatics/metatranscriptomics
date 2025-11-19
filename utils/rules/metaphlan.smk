@@ -37,12 +37,13 @@ rule sgb_to_GTDB_relab:
     input:
         sg=config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt"
     params:
+        metaphlan_file = config["metaphlan_file"],
         gtdb_output_dir=config["output_dir"] + "/metaphlan/GTDB_relab"
     output:
         gtdb=config["output_dir"] + "/metaphlan/GTDB_relab/{sample}_profile.txt"
     conda: config["metaphlan_version"]
     shell:
-        "sgb_to_gtdb_profile.py  -i {input.sg} -o {output.gtdb}"
+        "sgb_to_gtdb_profile.py -d {params.metaphlan_file} -i {input.sg} -o {output.gtdb}"
 
 
 rule mergeprofiles:
