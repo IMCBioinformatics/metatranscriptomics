@@ -1,6 +1,13 @@
 # metatranscriptomics/metagenomics
 This pipeline provides a modular workflow for analyzing high-throughput sequencing data, with support for both metatranscriptomics and shotgun metagenomics.
 
+This pipeline is a combination of following existing pipelines with some modifications:
+https://github.com/SycuroLab/metqc
+https://github.com/SycuroLab/metaphlan4
+https://github.com/SycuroLab/metaphlan4_gtdb
+https://github.com/SycuroLab/metannotate
+
+
 <br>
 
 ## **Steps**:
