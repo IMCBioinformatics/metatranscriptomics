@@ -43,7 +43,7 @@ rule prinseq:
     output:
         r1 = os.path.join(config["output_dir"],"metqc/prinseq","{sample}_filtered_1.fastq"),
         r2 = os.path.join(config["output_dir"],"metqc/prinseq","{sample}_filtered_2.fastq")
-    conda: "../envs/prinseq_env.yaml" 
+    conda: "prinseq" 
     shell:
             "perl utils/scripts/prinseq-lite.pl -fastq {input.r1} -fastq2 {input.r2} "
             "-trim_left {config[trimleft]} -trim_right {config[trimright]} "
@@ -64,7 +64,7 @@ rule bmtagger:
     params:
         n = os.path.join(config["output_dir"],"metqc/bmtagger","{sample}_bmtagged"),
         r3 = os.path.join(config["output_dir"],"metqc/bmtagger","bmtagger_complete.txt")
-    conda: "../envs/bmtagger_env.yaml"
+    conda: "bmtagger"
     shell:
         "bmtagger.sh -b {config[bmfilter_ref]} -x {config[srprism_ref]} -q 1 -1 {input.r1} -2 {input.r2} -o {params.n} -X;"
         " touch  {params.r3}"
@@ -133,7 +133,7 @@ rule seqkit:
         raw=config["input_dir"],
         prinseq=directory(os.path.join(config["output_dir"],"metqc/prinseq")),
         bmtagger=directory(os.path.join(config["output_dir"],"metqc/bmtagger"))
-     conda: "../envs/seqkit.yaml"
+     conda: "seqkit"
      shell:
          "seqkit stats -b -j {config[metqc_cpus]} {params.prinseq}/*_[0-9].fastq -o {output.prinseq};"
          "seqkit stats -b -j {config[metqc_cpus]} {params.bmtagger}/*.fastq -o {output.bmtagger};"
@@ -150,7 +150,7 @@ rule host_contamination:
      params:
         r1=config["reverse_read_suffix"],
         r2=config["forward_read_suffix"]
-     conda: "../envs/python3_8.yaml"
+     conda: "python38"
      output:
          hc=config["output_dir"]+"/metqc/seqkit/qc_seqkit.csv"
      script:"../scripts/host_contamination.py"
