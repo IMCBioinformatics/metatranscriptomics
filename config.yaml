@@ -110,17 +110,17 @@ ref6: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-euk-28
 #** metaphlan **
 #****************
 
-metaphlan_version: "metaphlan4.1.1"
+metaphlan_version: "metaphlan4.2.4"
 
 ## Metaphlan bowtie2 database.
 
-metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403"
+metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version"
 
-metaphlan_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403/mpa_vJun23_CHOCOPhlAnSGB_202403.pkl"
+metaphlan_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503.pkl"
 
 index: "mpa_vJun23_CHOCOPhlAnSGB_202403"
 
-sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403/mpa_vJun23_CHOCOPhlAnSGB_202403_SGB2GTDB.tsv"
+sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503_SGB2GTDB.tsv"
 
 
 
