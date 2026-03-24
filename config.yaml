@@ -118,7 +118,7 @@ metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphla
 
 metaphlan_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503.pkl"
 
-index: "mpa_vJun23_CHOCOPhlAnSGB_202403"
+index: "mpa_vJan25_CHOCOPhlAnSGB_202503"
 
 sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503_SGB2GTDB.tsv"
 
