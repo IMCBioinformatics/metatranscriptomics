@@ -85,10 +85,10 @@ maxn: 15
 run_bmtagger: TRUE
 
 # Index for bmfilter (part of bmtagger), bitmask file
-bmfilter_ref: "/bulk/IMCshared_bulk/shared/dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens_rna/hg19_rRNA_mito_Hsapiens_rna_reference.bitmask"
+bmfilter_ref: "/bulk/IMCshared_bulk/sbagheri/bmtagger_DB/hg38.bitmask"
 
 # Index for srprism (part of bmtagger)
-srprism_ref: "/bulk/IMCshared_bulk/shared/dbs/bmtaggerDB/hg19_rRNA_mito_Hsapiens_rna/hg19_rRNA_mito_Hsapiens_rna_reference.srprism"
+srprism_ref: "/bulk/IMCshared_bulk/sbagheri/bmtagger_DB/hg38.srprism"
 
 
 #***************
@@ -110,17 +110,18 @@ ref6: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/sortmerna/silva-euk-28
 #** metaphlan **
 #****************
 
-metaphlan_version: "metaphlan4.2.4"
+metaphlan_version: "metaphlan4.1.1"
 
 ## Metaphlan bowtie2 database.
 
-metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version"
+metaphlan_database: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403"
 
-metaphlan_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503.pkl"
+metaphlan_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403/mpa_vJun23_CHOCOPhlAnSGB_202403.pkl"
 
-index: "mpa_vJan25_CHOCOPhlAnSGB_202503"
+index: "mpa_vJun23_CHOCOPhlAnSGB_202403"
 
-sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/vJan25_version/mpa_vJan25_CHOCOPhlAnSGB_202503_SGB2GTDB.tsv"
+sgb_to_gtdb_tsv_file: "/bulk/IMCbinf_bulk/sbagheri/Projects_IMC/databases/metaphlan/metaphlan_jun23_v202403/mpa_vJun23_CHOCOPhlAnSGB_202403_SGB2GTDB.tsv"
+
 
 
 
