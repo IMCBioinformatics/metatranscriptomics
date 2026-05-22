@@ -12,7 +12,7 @@ rule metaphlan:
     conda: config["metaphlan_version"]
     shell:
         "metaphlan -t rel_ab_w_read_stats {input.reads} --input_type fastq -s {output.sam} "
-        "--db_dir {params.metaphlan_database} --index {params.index} --mapout {output.bt} --nproc {params.threads} -o {output.pr}"
+        "--bowtie2db {params.metaphlan_database} --index {params.index} --bowtie2out {output.bt} --nproc {params.threads} -o {output.pr}"
 
 
 
