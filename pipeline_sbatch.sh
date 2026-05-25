@@ -20,6 +20,10 @@ num_jobs=60
 
 snakemake --unlock
 
+#Let's source Conda manually before activating a conda env
+source $(conda info --base)/etc/profile.d/conda.sh
+
+
 conda activate snakemake
 
 echo "started at: `date`"
