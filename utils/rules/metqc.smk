@@ -28,9 +28,11 @@ rule cutadapt:
     output:
         r1 = os.path.join(config["output_dir"],"metqc/cutadapt","{sample}_r1_trimmed.fastq"),
         r2 = os.path.join(config["output_dir"],"metqc/cutadapt","{sample}_r2_trimmed.fastq")
+    params:
+        nextseq_novaseq_flag=config["nextseq_novaseq_Q_flag"]        
     conda: "QC"
     shell:
-            "cutadapt -m {config[minlength]} --nextseq-trim=20 --max-n {config[maxn]} -a {config[fwd_adapter]} -A {config[rev_adapter]} "
+            "cutadapt -m {config[minlength]} --nextseq-trim={params.nextseq_novaseq_flag} --max-n {config[maxn]} -a {config[fwd_adapter]} -A {config[rev_adapter]} "
             "-j {config[metqc_cpus]} -o {output.r1} -p {output.r2} "
             "{input.r1} {input.r2}"
 
