@@ -61,6 +61,10 @@ fwd_adapter:
 rev_adapter: 
 
 
+#2-colour-chemistry sequencers
+nextseq_novaseq_Q_flag: 20
+
+
 ### Prinseq parameters
 trimleft: 0
 trimright: 0
