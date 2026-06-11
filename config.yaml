@@ -65,6 +65,11 @@ rev_adapter:
 nextseq_novaseq_Q_flag: 20
 
 
+#minimum overlap
+min_overlap: 15
+
+
+
 ### Prinseq parameters
 trimleft: 0
 trimright: 0
