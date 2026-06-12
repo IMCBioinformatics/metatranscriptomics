@@ -9,7 +9,7 @@ rule humann3:
     params:
         threads = config["metannotate_cpus"],
         db2 = config["output_dir"] + "/metannotate/databases/{sample}_database",
-        metaphlan= config["path"] + "/output/metaphlan/SGB/{sample}_profile.txt",
+        metaphlan= config["output_dir"] + "/metaphlan/SGB/{sample}_profile.txt",
         s = "{sample}",
         output=config["output_dir"] + "/metannotate/raw"
     conda: config["humann_version"]
